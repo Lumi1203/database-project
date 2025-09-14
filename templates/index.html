@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Homepage{% endblock %}
 
 {% block content %}
-    <h2>Welcome to the Index Page</h2>
-    <p>This is the homepage of your Flask application.</p>
-    <p>Feel free to customize this page as needed.</p>
+<h2>Welcome to the Accident Report Platform</h2>
+<p>This platform allows employees to report workplace accidents and lets authorized personnel view accident logs.</p>
+<p>Please <a href="{{ url_for('login') }}">log in</a> or <a href="{{ url_for('register') }}">register</a> to get started.</p>
 {% endblock %}

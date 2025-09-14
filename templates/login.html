@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}User Login{% endblock %}
 
 {% block content %}
-    <h2>Welcome to the Index Page</h2>
-    <p>This is the homepage of your Flask application.</p>
-    <p>Feel free to customize this page as needed.</p>
+<h2>Login</h2>
+<form method="POST" action="{{ url_for('login') }}">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button type="submit">Login</button>
+</form>
+
+<p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
 {% endblock %}

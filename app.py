@@ -13,3 +13,11 @@ def login():
 @app.route('/accident')
 def accident():
     return render_template('accident.html')
+
+@app.route('/view')
+def view():
+    return render_template('view.html')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
