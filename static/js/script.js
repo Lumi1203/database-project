@@ -18,3 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
         updateButtonText(isDark);
     });
 });
+
+const scrollerDiv = document.getElementById("image-scroller");
+
+if (scrollerDiv) {
+    const images = JSON.parse(scrollerDiv.getAttribute("data-images"));
+    let currentIndex = 0;
+    const scrollerImage = document.getElementById("scroller-image");
+
+    function showNextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        scrollerImage.src = images[currentIndex];
+    }
+
+    setInterval(showNextImage, 3000);
+}
