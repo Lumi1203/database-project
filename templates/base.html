@@ -29,6 +29,15 @@
     </header>
 
     <main>
+        {% if current_user.is_authenticated %}
+          <div class="user-info">
+            You are logged in as {{ current_user.firstname }}
+            <form action="{{ url_for('logout') }}" method="post" style="display:inline;">
+            <button type="submit">Logout</button>
+             </form>
+         </div>
+        {% endif %}
+
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <ul class="flashes">

@@ -41,3 +41,12 @@ class Accident(db.Model):
     reporter = db.relationship('User', foreign_keys=[reporter_id], backref='reported_accidents')
 
     first_aider = db.relationship('User', foreign_keys=[first_aider_id])
+
+
+class FirstAiderRegistry(db.Model):
+    id = db.Column(db.Integer, primary_key= True)
+    firstname = db.Column(db.String(100), nullable=False)
+    surname = db.Column(db.String(100), nullable=False)
+    staffnumber = db.Column(db.String(10), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    certificate_number = db.Column(db.String(6), unique=True, nullable=False)

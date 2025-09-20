@@ -174,9 +174,10 @@ def register():
 
     return render_template('register.html')
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 @login_required
 def logout():
     logout_user()
-    flash("You have been logged out.")
-    return redirect(url_for('index'))
+    flash('You have been logged out.')
+    return redirect(url_for('login'))
+
