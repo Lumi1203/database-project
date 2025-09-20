@@ -1,5 +1,10 @@
 Welcome to Accident Report Platform
 
+RENDER: https://database-project-e9d8.onrender.com
+
+GITHUB: https://github.com/Lumi1203/database-project.git
+
+
 This platform allows employees to report workplace accidents, record first aid adminstered for accident cases and lets authorized personnel view accident logs.
 
 Please create atleast two user accounts for testing and assessment
@@ -34,3 +39,8 @@ valid_certificate_numbers = [
 
 
 First Aider account can not be created without a valid Certificate Number
+
+
+RENDER: https://database-project-e9d8.onrender.com
+
+GITHUB: https://github.com/Lumi1203/database-project.git
