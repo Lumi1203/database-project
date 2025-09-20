@@ -5,6 +5,9 @@ from certificates import valid_certificate_numbers
 from models import db, User, Accident
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -91,6 +94,7 @@ def accident():
     return render_template('accident.html', first_aiders=first_aiders)
 
 @app.route('/view')
+@login_required
 def view():
     return render_template('view.html', accident=Accident.query.all())
 
