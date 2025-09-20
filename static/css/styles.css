@@ -292,10 +292,11 @@ body.dark-mode #darkModeToggle {
   }
 
 main {
-  max-width: 900px; 
+  /*max-width: 900px;*/ 
   margin: 0 auto;    
   padding: 2em;
   text-align: center; 
+  overflow-x: auto;
 }
 
 #image-scroller {
@@ -313,5 +314,17 @@ main {
   display: block;
   margin: 0 auto;
 }
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
 
 }
