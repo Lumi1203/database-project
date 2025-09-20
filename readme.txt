@@ -1,5 +1,7 @@
 Welcome to Accident Report Platform
 
+This platform allows employees to report workplace accidents, record first aid adminstered for accident cases and lets authorized personnel view accident logs.
+
 Please create atleast two user accounts for testing and assessment
 
 A First Aider Account would have certain previledges such as Creating, Viewing, Editing and Deleting an Accident report ( CRUD operations)
