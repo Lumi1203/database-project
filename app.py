@@ -191,3 +191,41 @@ def first_aider_registry():
 
     first_aiders = FirstAiderRegistry.query.all()
     return render_template('view.html', first_aiders=first_aiders)
+
+
+@app.route('/accident/edit/<int:accident_id>', methods=['GET', 'POST'])
+@login_required
+def edit_accident(accident_id):
+    accident = Accident.query.get_or_404(accident_id)
+   
+    first_aiders = User.query.filter_by(firstaider=True).all()
+
+    if request.method == 'POST':
+        accident.title = request.form['title']
+        accident.type = request.form['type']
+        accident.description = request.form['description']
+        accident.location = request.form['location']
+        accident.date_of_accident = datetime.strptime(request.form['date'], '%Y-%m-%d').date()
+        accident.time_of_accident = datetime.strptime(request.form['time'], '%H:%M').time()
+        accident.first_aid_administered = request.form['firstaid'] == "Yes"
+        accident.first_aid_details = request.form['firstaiddetails']
+        accident.first_aider_id = int(request.form.get('firstaider')) if request.form.get('firstaider') else None
+
+        db.session.commit()
+        flash("Accident updated successfully.")
+        return redirect(url_for('view'))
+
+    return render_template('accident.html', accident=accident, first_aiders=first_aiders)
+
+
+
+
+@app.route('/accident/delete/<int:accident_id>', methods=['POST'])
+@login_required
+def delete_accident(accident_id):
+    accident = Accident.query.get_or_404(accident_id)
+  
+    db.session.delete(accident)
+    db.session.commit()
+    flash("Accident deleted.")
+    return redirect(url_for('view'))

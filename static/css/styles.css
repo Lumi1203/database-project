@@ -4,6 +4,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: white;
   color: black;
+  overflow-x: hidden;
 }
 
 .logo {
@@ -238,4 +239,81 @@ body.dark-mode #darkModeToggle {
   color: #0c5460;
   border: 1px solid #bee5eb;
   border-radius: 4px;
+}
+
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Media query: tablet and up */
+@media (min-width: 768px) {
+  .layout {
+    display: flex;
+    flex-direction: row;
+  }
+
+  nav {
+    width: 220px;
+    min-height: 100vh;
+    align-items: flex-start;
+    padding: 1em;
+    gap: 1em;
+    background-color: #f5faff;
+    position: sticky;
+    top: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  nav a {
+    width: 100%;
+    text-align: left;
+  }
+
+  main {
+    flex: 1;
+    padding: 2em;
+    text-align: left;
+  }
+
+  #image-scroller {
+    margin-top: 0;
+    margin-bottom: 2em;
+    width: 100%;
+    max-width: 800px;
+  }
+  #scroller-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  /* === Main content centering === */
+main {
+  max-width: 900px; /* Keeps content nicely readable on large screens */
+  margin: 0 auto;    /* Centers the main block */
+  padding: 2em;
+  text-align: center; /* Center text and inner elements */
+}
+
+/* === Image scroller centering === */
+#image-scroller {
+  margin: 0 auto 2em auto; /* top: 0, bottom: 2em, horizontal: auto */
+  width: 100%;
+  max-width: 800px; /* Keeps it from being too wide */
+}
+
+#scroller-image {
+  width: 150%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+}
+
 }

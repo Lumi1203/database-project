@@ -12,6 +12,10 @@
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
         </a>
         <h1 class="sitename"> Accident Report Platform</h1>
+        
+    </header>
+
+    <div class="layout">
         <nav>
             <a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Home</a>
             <a href="{{ url_for('login') }}" class="{% if request.endpoint == 'login' %}active{% endif %}">Login</a>
@@ -19,30 +23,34 @@
             <a href="{{ url_for('accident') }}" class="{% if request.endpoint == 'accident' %}active{% endif %}">Report an Accident</a>
             <a href="{{ url_for('view') }}" class="{% if request.endpoint == 'view' %}active{% endif %}">View Accidents Log</a>
         </nav>
-        <div id="image-scroller" data-images='[
-          "{{ url_for("static", filename="images/scroll1.jpg") }}",
-          "{{ url_for("static", filename="images/scroll2.jpg") }}",
-           "{{ url_for("static", filename="images/scroll3.jpg") }}"
-            ]'>
-            <img id="scroller-image" src="{{ url_for('static', filename='images/scroll1.jpg') }}" alt="Slideshow">
-        </div>
-    </header>
+        <main>
+            <div id="image-scroller" data-images='[
+            "{{ url_for("static", filename="images/scroll1.jpg") }}",
+            "{{ url_for("static", filename="images/scroll2.jpg") }}",
+            "{{ url_for("static", filename="images/scroll3.jpg") }}"
+                ]'>
+                <img id="scroller-image" src="{{ url_for('static', filename='images/scroll1.jpg') }}" alt="Slideshow">
+            </div>
 
-    <main>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul class="flashes">
-                     {% for message in messages %}
-                         <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
+            <br>
 
-        {% block content %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
 
-        {% endblock %}
-    </main>
+            <br>
+
+            {% block content %}
+
+            {% endblock %}
+        </main>
+    </div>
 
     <footer>
         <a href="{{ url_for('index') }}" class="footer-logo-link">
