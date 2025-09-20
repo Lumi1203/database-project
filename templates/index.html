@@ -16,5 +16,14 @@
 <h2>Welcome to the Accident Report Platform</h2>
 <p>This platform allows employees to report workplace accidents, record first aid adminstered for accident cases and lets authorized personnel view accident logs.</p>
 <br><br>
+<p>1. A First Aider Account would have certain previledges such as Creating, Viewing, Editing and Deleting an Accident report ( CRUD operations)</p>
+<br>
+<p>2. While a Regular user account will only be able to create an accident report. </p>
+<p>To create an accident report, it is important to have a First Aider Account created First, (one or more has already been created)</p>
+<br>
+<p>Staff Number should be 3 digits, numbers only.</p>
+<br>
+<p>First Aider account can not be created without a valid Certificate Number</p>
+<br><br>
 <p>Please <a href="{{ url_for('login') }}">Log in</a> or <a href="{{ url_for('register') }}">Register</a> to get started.</p>
 {% endblock %}
