@@ -6,13 +6,18 @@
 <h2>Accident Logs</h2>
 
 {% if accidents %}
-    <table border="1" cellpadding="10">
+    <table>
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Type</th>
                 <th>Description</th>
                 <th>Location</th>
                 <th>Date</th>
+                <th>Time</th>
+                <th>First Aid Given</th>
+                <th>First Aider</th>
+                <th>First Aid Details</th>
                 <th>Reported By</th>
             </tr>
         </thead>
@@ -20,11 +25,18 @@
             {% for accident in accidents %}
             <tr>
                 <td>{{ accident.title }}</td>
+                <td>{{ accident.type }}</td>
                 <td>{{ accident.description }}</td>
                 <td>{{ accident.location }}</td>
                 <td>{{ accident.date }}</td>
+                <td>{{ accident.time }}</td>
+                <td>{{ accident.firstaid }}</td>
+                <td>{{ accident.firstaider }}</td>
+                <td>{{ accident.firstaiddetails }}</td>
                 <td>{{ accident.reported_by }}</td>
+                {{ accident }}
             </tr>
+
             {% endfor %}
         </tbody>
     </table>

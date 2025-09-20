@@ -27,6 +27,25 @@
     <label for="time">Time of Accident:</label><br>
     <input type="time" id="time" name="time" required><br>
 
+    <label for="firstaid">Was First Aid administered?</label><br>
+    <select id="firstaid" name="firstaid" required>
+        <option value="">Select an option</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select><br>
+
+    <label for="firstaider">First Aider?</label><br>
+    <select id="firstaider" name="firstaider" required>
+        <option value="">Select an option</option>
+        {% for fa in first_aiders %}
+            <option value="{{ fa.id }}">{{ fa.firstname }} {{ fa.surname }}</option>
+    </select><br>
+
+    <label for="firstaiddetails">First Aid Details:</label><br>
+    <textarea id="firstaiddetails" name="firstaiddetails" rows="4" cols="50" required></textarea><br>
+
+    <br>
+
     <button type="submit">Submit Report</button>
 </form>
 {% endblock %}
