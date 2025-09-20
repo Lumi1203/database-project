@@ -37,6 +37,7 @@ valid_certificate_numbers = [
     "000000"
 ]
 
+Staff Number should be 3 digits, numbers only.
 
 First Aider account can not be created without a valid Certificate Number
 
