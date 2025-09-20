@@ -2,7 +2,7 @@ from flask import Flask, render_template, render_template, request, redirect, ur
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from certificates import valid_certificate_numbers
-from models import db, User, Accident
+from models import db, User, Accident, FirstAiderRegistry
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from dotenv import load_dotenv
@@ -52,7 +52,7 @@ def login():
 @app.route('/accident', methods=['GET', 'POST'])
 @login_required
 def accident():
-    # Query users who are first aiders
+
     first_aiders = User.query.filter_by(firstaider=True).all()
 
     if request.method == 'POST':
@@ -66,7 +66,6 @@ def accident():
         firstaider_id = request.form.get('firstaider')
         firstaiddetails = request.form['firstaiddetails']
 
-        # Convert date and time strings to proper types
         date_of_accident = datetime.strptime(date_str, '%Y-%m-%d').date()
         time_of_accident = datetime.strptime(time_str, '%H:%M').time()
 
@@ -90,7 +89,7 @@ def accident():
         db.session.commit()
 
         flash('Accident report submitted successfully.')
-        return redirect(url_for('view'))
+        return redirect(url_for('index'))
 
     return render_template('accident.html', first_aiders=first_aiders)
 
@@ -99,9 +98,10 @@ def accident():
 def view():
     if not current_user.firstaider:
         flash("Access denied: Only First Aiders can view the accident logs.")
-        return redirect(url_for('index'))  # or redirect to another page like dashboard
+        return redirect(url_for('index'))
 
     accidents = Accident.query.order_by(Accident.date_reported.desc()).all()
+    #first_aiders = FirstAiderRegistry.query.all()
     return render_template('view.html', accidents=accidents)
 
 
@@ -181,3 +181,13 @@ def logout():
     flash('You have been logged out.')
     return redirect(url_for('login'))
 
+
+@app.route('/first_aider_registry')
+@login_required
+def first_aider_registry():
+    if not current_user.firstaider:
+        flash("Access denied: Only First Aiders can view the accident logs.")
+        return redirect(url_for('index'))
+
+    first_aiders = FirstAiderRegistry.query.all()
+    return render_template('view.html', first_aiders=first_aiders)

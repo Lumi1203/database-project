@@ -3,9 +3,20 @@
 {% block title %}View Accident Log{% endblock %}
 
 {% block content %}
-<h2>Accident Logs</h2>
+
+{% if current_user.is_authenticated %}
+          <div class="user-info">
+            You are logged in as {{ current_user.firstname }}
+            <form action="{{ url_for('logout') }}" method="post" style="display:inline;">
+            <button type="submit">Logout</button>
+             </form>
+         </div>
+        {% endif %}
+
+<h2>Logs and Registry</h2>
 
 {% if accidents %}
+<h3>Accident Logs</h3>
     <table>
         <thead>
             <tr>
@@ -44,7 +55,45 @@
             {% endfor %}
         </tbody>
     </table>
+<p>To view First Aider's Registry <a href="{{ url_for('first_aider_registry') }}">Click Here</a></p>
 {% else %}
-    <p>No accident reports available.</p>
+    <p></p>
+
 {% endif %}
+
+<br>
+
+
+
+{% if first_aiders %}
+<h3>First Aider's Registry</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Staff Number</th>
+                <th>First Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Certificate Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fa in first_aiders %}
+            <tr>
+                <td>{{ fa.id }}</td>
+                <td>{{ fa.staffnumber }}</td>
+                <td>{{ fa.firstname }}</td>
+                <td>{{ fa.surname }}</td>
+                <td>{{ fa.email }}</td>
+                <td>{{ fa.certificate_number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<p>To view Accident Logs <a href="{{ url_for('view') }}">Click Here</a></p>
+{% else %}
+    <p></p>
+{% endif %}
+
 {% endblock %}
