@@ -247,7 +247,7 @@ body.dark-mode #darkModeToggle {
   flex-direction: column;
 }
 
-/* Media query: tablet and up */
+/* Media query*/
 @media (min-width: 768px) {
   .layout {
     display: flex;
@@ -291,23 +291,21 @@ body.dark-mode #darkModeToggle {
     border-radius: 5px;
   }
 
-  /* === Main content centering === */
 main {
-  max-width: 900px; /* Keeps content nicely readable on large screens */
-  margin: 0 auto;    /* Centers the main block */
+  max-width: 900px; 
+  margin: 0 auto;    
   padding: 2em;
-  text-align: center; /* Center text and inner elements */
+  text-align: center; 
 }
 
-/* === Image scroller centering === */
 #image-scroller {
-  margin: 0 auto 2em auto; /* top: 0, bottom: 2em, horizontal: auto */
-  width: 100%;
-  max-width: 800px; /* Keeps it from being too wide */
+  margin: 0 auto 2em auto;
+  width: 120%;
+  max-width: 800px;
 }
 
 #scroller-image {
-  width: 150%;
+  width: 100%;
   height: auto;
   max-height: 300px;
   object-fit: cover;
