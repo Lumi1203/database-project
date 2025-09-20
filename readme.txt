@@ -4,9 +4,9 @@ This platform allows employees to report workplace accidents, record first aid a
 
 Please create atleast two user accounts for testing and assessment
 
-A First Aider Account would have certain previledges such as Creating, Viewing, Editing and Deleting an Accident report ( CRUD operations)
+1. A First Aider Account would have certain previledges such as Creating, Viewing, Editing and Deleting an Accident report ( CRUD operations)
 
-While a Regular user account will only be able to create an accident report.
+2. While a Regular user account will only be able to create an accident report.
 
 To create an accident report, it is important to have a First Aider Account created First, (one or more has already been created)
 
