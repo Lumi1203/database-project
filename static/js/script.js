@@ -33,3 +33,24 @@ if (scrollerDiv) {
 
     setInterval(showNextImage, 3000);
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const firstaiderSelect = document.getElementById('firstaider');
+    const certificateField = document.getElementById('certificate-field');
+    const certInput = document.getElementById('firstaidernumber');
+
+    function toggleCertificateField() {
+        if (firstaiderSelect.value === 'Yes') {
+            certificateField.style.display = 'block';
+            certInput.required = true;
+        } else {
+            certificateField.style.display = 'none';
+            certInput.required = false;
+            certInput.value = '';
+        }
+    }
+
+    toggleCertificateField();
+
+    firstaiderSelect.addEventListener('change', toggleCertificateField);
+});

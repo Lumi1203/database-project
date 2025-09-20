@@ -5,14 +5,35 @@
 {% block content %}
 <h2>Register</h2>
 <form method="POST" action="{{ url_for('register') }}">
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" required><br><br>
+    <label for="firstname">Firstame:</label><br>
+    <input type="text" id="firstname" name="firstname" required><br>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+    <label for="surname">Surname:</label><br>
+    <input type="text" id="surname" name="surname" required><br>
+
+    <label for="email">Staff Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="staffnumber">Staff Number:</label><br>
+    <input type="text" id="staffnumber" name="staffnumber" maxlength="4" inputmode="numeric" required><br>
+
+    <label for="firstaider">Are you a trained First Aider?</label><br>
+    <select id="firstaider" name="firstaider" required>
+        <option value="">Select an option</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select><br>
+
+    <div id="certificate-field">
+        <label for="firstaidernumber">First Aider Certificate Number (6 digits):</label><br>
+        <input type="text" id="firstaidernumber" name="firstaidernumber" 
+               pattern="\d{6}" maxlength="6" inputmode="numeric"><br>
+    </div>
+
+    <br>
 
     <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
+    <input type="password" id="password" name="password" required><br>
 
     <label for="confirm_password">Confirm Password:</label><br>
     <input type="password" id="confirm_password" name="confirm_password" required><br><br>
