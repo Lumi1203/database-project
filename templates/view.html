@@ -6,7 +6,7 @@
 <h2>Accident Logs</h2>
 
 {% if accidents %}
-    <table>
+    <table border="1" cellpadding="5" cellspacing="0">
         <thead>
             <tr>
                 <th>Title</th>
@@ -28,15 +28,19 @@
                 <td>{{ accident.type }}</td>
                 <td>{{ accident.description }}</td>
                 <td>{{ accident.location }}</td>
-                <td>{{ accident.date }}</td>
-                <td>{{ accident.time }}</td>
-                <td>{{ accident.firstaid }}</td>
-                <td>{{ accident.firstaider }}</td>
-                <td>{{ accident.firstaiddetails }}</td>
-                <td>{{ accident.reported_by }}</td>
-                {{ accident }}
+                <td>{{ accident.date_of_accident.strftime('%Y-%m-%d') }}</td>
+                <td>{{ accident.time_of_accident.strftime('%H:%M') }}</td>
+                <td>{{ 'Yes' if accident.first_aid_administered else 'No' }}</td>
+                <td>
+                    {% if accident.first_aider %}
+                        {{ accident.first_aider.firstname }} {{ accident.first_aider.surname }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>{{ accident.first_aid_details }}</td>
+                <td>{{ accident.reporter.firstname }} {{ accident.reporter.surname }}</td>
             </tr>
-
             {% endfor %}
         </tbody>
     </table>

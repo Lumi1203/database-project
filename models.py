@@ -14,7 +14,7 @@ class User(UserMixin, db.Model):
     staffnumber = db.Column(db.String(10), nullable=False)
     firstaider = db.Column(db.Boolean, nullable=False)
     certificate_number = db.Column(db.String(6), nullable=True)
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(512), nullable=False)
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
@@ -35,7 +35,7 @@ class Accident(db.Model):
     first_aider_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True) 
     first_aid_details = db.Column(db.Text, nullable=False)
 
-    date_reported = db.Column(db.DateTime, default=lambda: datetime.noe(timezone.utc))
+    date_reported = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
 
     reporter_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     reporter = db.relationship('User', foreign_keys=[reporter_id], backref='reported_accidents')

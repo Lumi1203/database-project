@@ -39,6 +39,7 @@
         <option value="">Select an option</option>
         {% for fa in first_aiders %}
             <option value="{{ fa.id }}">{{ fa.firstname }} {{ fa.surname }}</option>
+        {% endfor %}
     </select><br>
 
     <label for="firstaiddetails">First Aid Details:</label><br>

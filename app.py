@@ -6,6 +6,7 @@ from models import db, User, Accident
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from dotenv import load_dotenv
+import re
 
 load_dotenv()
 
@@ -96,7 +97,13 @@ def accident():
 @app.route('/view')
 @login_required
 def view():
-    return render_template('view.html', accident=Accident.query.all())
+    if not current_user.firstaider:
+        flash("Access denied: Only First Aiders can view the accident logs.")
+        return redirect(url_for('index'))  # or redirect to another page like dashboard
+
+    accidents = Accident.query.order_by(Accident.date_reported.desc()).all()
+    return render_template('view.html', accidents=accidents)
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -113,6 +120,27 @@ def register():
         if password != confirm_password:
             flash('Passwords do not match.')
             return render_template('register.html')
+        
+        if '@' not in email:
+            flash('Please enter a valid email address.')
+            return render_template('register.html')
+
+        if password != confirm_password:
+            flash('Passwords do not match.')
+            return render_template('register.html')
+
+        if len(password) < 8:
+            flash('Password must be at least 8 characters long.')
+            return render_template('register.html')
+
+        if not re.search(r'[A-Z]', password):
+            flash('Password must contain at least one uppercase letter.')
+            return render_template('register.html')
+
+        if not re.search(r'[^A-Za-z0-9]', password):
+            flash('Password must contain at least one special character.')
+            return render_template('register.html')
+
 
         if firstaider == 'Yes':
             if not cert_number:
